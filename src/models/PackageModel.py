@@ -147,4 +147,4 @@ class PackageConfigs(Configs):
 class PackageModel(Package):
     configs: PackageConfigs
     type: Literal["component"] = "component"
-    name: Literal["RotationExample"] = "RotationExample"
+    name: Literal["RotationExampleEnsar"] = "RotationExampleEnsar"
