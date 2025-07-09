@@ -1,2 +1,2 @@
-# Capsule
+# capsule
 Capsule for NOVAVISION
