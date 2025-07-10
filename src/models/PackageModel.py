@@ -112,7 +112,7 @@ class BrightnessExampleEnsarExecutor(Config):
     field: Literal["option"] = "option"
 
     class Config:
-        title = "Package"
+        title = "Brightness and Text"
         json_schema_extra = {
             "target": {
                 "value": 0
@@ -150,7 +150,7 @@ class RotationExampleEnsarExecuter(Config):
     field: Literal["option"] = "option"
 
     class Config:
-        title = "Package"
+        title = "Rotation and GrayScaling"
         json_schema_extra = {
             "target": {
                 "value": 0
