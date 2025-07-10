@@ -30,7 +30,7 @@ class BrightnessExampleEnsar(Component):
 
     def brightness(self, img):
         alpha = 2.0
-        beta = 50
+        beta = 100
         return cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
 
     def write(self, img):
