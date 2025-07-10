@@ -76,7 +76,48 @@ class Degree(Config):
     field: Literal["textInput"] = "textInput"
 
     class Config:
-        title = "Angleee"
+        title = "Angle"
+
+
+
+class BrightnessExampleEnsarExecutorInputs(Inputs):
+    inputImage: InputImage
+
+class BrightnessExampleEnsarExecutorConfigs(Configs):
+    degree: Degree
+    drawBBox: KeepSideBBox
+
+
+class BrightnessExampleEnsarExecutorRequest(Request):
+    inputs: Optional[BrightnessExampleEnsarExecutorInputs]
+    configs: BrightnessExampleEnsarExecutorConfigs
+
+    class Config:
+        json_schema_extra = {
+            "target": "configs"
+        }
+
+class BrightnessExampleEnsarExecutorOutputs(Outputs):
+    outputImage: OutputImage
+
+class BrightnessExampleEnsarExecutorResponse(Response):
+    outputs: BrightnessExampleEnsarExecutorOutputs
+
+
+
+class BrightnessExampleEnsarExecutor(Config):
+    name: Literal["BrightnessExampleEnsar"] = "BrightnessExampleEnsar"
+    value: Union[BrightnessExampleEnsarExecutorRequest, BrightnessExampleEnsarExecutorResponse]
+    type: Literal["object"] = "object"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "Package"
+        json_schema_extra = {
+            "target": {
+                "value": 0
+            }
+        }
 
 class RotationExampleEnsarExecuterInputs(Inputs):
     inputImage: InputImage
@@ -119,15 +160,13 @@ class RotationExampleEnsarExecuter(Config):
 
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[RotationExampleEnsarExecuter]
+    value: Union[RotationExampleEnsarExecuter, BrightnessExampleEnsarExecutor]
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
     class Config:
         title = "Task"
-        json_schema_extra = {
-            "target": "value"
-        }
+
 
 class PackageConfigs(Configs):
     executor: ConfigExecutor
