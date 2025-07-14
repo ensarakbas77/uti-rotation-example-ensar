@@ -80,6 +80,45 @@ class Degree(Config):
 
 
 
+class BlurringExampleEnsarExecuterInputs(Inputs):
+    inputImage: InputImage
+
+class BlurringExampleEnsarExecuterConfigs(Configs):
+    degree: Degree
+    drawBBox: KeepSideBBox
+
+
+
+class BlurringExampleEnsarExecuterRequest(Request):
+    inputs: Optional[BlurringExampleEnsarExecuterInputs]
+    configs: BlurringExampleEnsarExecuterConfigs
+
+    class Config:
+        json_schema_extra = {
+            "target": "configs"
+        }
+
+class BlurringExampleEnsarExecuterOutputs(Outputs):
+    outputImage: OutputImage
+
+class BlurringExampleEnsarExecuterResponse(Response):
+    outputs: BlurringExampleEnsarExecuterOutputs
+
+class BlurringExampleEnsarExecutor(Config):
+    name: Literal["RotationExampleEnsar"] = "RotationExampleEnsar"
+    value: Union[BlurringExampleEnsarExecuterRequest, BlurringExampleEnsarExecuterResponse]
+    type: Literal["object"] = "object"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "Blurring and Flipping"
+        json_schema_extra = {
+            "target": {
+                "value": 0
+            }
+        }
+
+
 class BrightnessExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
 
@@ -160,7 +199,7 @@ class RotationExampleEnsarExecuter(Config):
 
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[RotationExampleEnsarExecuter, BrightnessExampleEnsarExecutor]
+    value: Union[RotationExampleEnsarExecuter, BrightnessExampleEnsarExecutor, BlurringExampleEnsarExecutor]
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
