@@ -80,33 +80,33 @@ class Degree(Config):
 
 
 
-class BlurringExampleEnsarExecuterInputs(Inputs):
+class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
 
-class BlurringExampleEnsarExecuterConfigs(Configs):
+class BlurringExampleEnsarExecutorConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
 
 
 
-class BlurringExampleEnsarExecuterRequest(Request):
-    inputs: Optional[BlurringExampleEnsarExecuterInputs]
-    configs: BlurringExampleEnsarExecuterConfigs
+class BlurringExampleEnsarExecutorRequest(Request):
+    inputs: Optional[BlurringExampleEnsarExecutorInputs]
+    configs: BlurringExampleEnsarExecutorConfigs
 
     class Config:
         json_schema_extra = {
             "target": "configs"
         }
 
-class BlurringExampleEnsarExecuterOutputs(Outputs):
+class BlurringExampleEnsarExecutorOutputs(Outputs):
     outputImage: OutputImage
 
-class BlurringExampleEnsarExecuterResponse(Response):
-    outputs: BlurringExampleEnsarExecuterOutputs
+class BlurringExampleEnsarExecutorResponse(Response):
+    outputs: BlurringExampleEnsarExecutorOutputs
 
 class BlurringExampleEnsarExecutor(Config):
     name: Literal["RotationExampleEnsar"] = "RotationExampleEnsar"
-    value: Union[BlurringExampleEnsarExecuterRequest, BlurringExampleEnsarExecuterResponse]
+    value: Union[BlurringExampleEnsarExecutorRequest, BlurringExampleEnsarExecutorResponse]
     type: Literal["object"] = "object"
     field: Literal["option"] = "option"
 
