@@ -105,7 +105,7 @@ class BlurringExampleEnsarExecutorResponse(Response):
     outputs: BlurringExampleEnsarExecutorOutputs
 
 class BlurringExampleEnsarExecutor(Config):
-    name: Literal["RotationExampleEnsar"] = "RotationExampleEnsar"
+    name: Literal["BlurringExampleEnsar"] = "BlurringExampleEnsar"
     value: Union[BlurringExampleEnsarExecutorRequest, BlurringExampleEnsarExecutorResponse]
     type: Literal["object"] = "object"
     field: Literal["option"] = "option"
