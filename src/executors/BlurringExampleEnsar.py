@@ -42,10 +42,8 @@ class BlurringExampleEnsar(Component):
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
         img2 = Image.get_frame(img=self.secondImage, redis_db=self.redis_db)
-        img.value = self.blurring(img.value)
-        img.value = self.flipping(img.value)
-        img2.value = self.blurring(img2.value)
-        img2.value = self.flipping(img2.value)
+        img.value, img2.value = self.blurring(img.value, img2.value)
+        img.value, img2.value = self.flipping(img.value, img2.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         self.secondImage = Image.set_frame(img=img2, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response_blurring(context=self)
