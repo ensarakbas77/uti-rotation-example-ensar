@@ -21,8 +21,8 @@ class BrightnessExampleEnsar(Component):
         self.request.model = PackageModel(**(self.request.data))
         self.rotation_degree = self.request.get_param("Degree")
         self.keep_side = self.request.get_param("KeepSide")
+        self.deneme = self.request.get_param("deneme")
         self.image = self.request.get_param("inputImage")
-        print(self.keep_side,"  ",self.rotation_degree)
 
     @staticmethod
     def bootstrap(config: dict) -> dict:

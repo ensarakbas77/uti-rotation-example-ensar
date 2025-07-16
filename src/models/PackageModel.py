@@ -128,6 +128,36 @@ class FlipParameter(Config):
         title = "Flipping Value"
 
 
+class denemeFalse(Config):
+    name: Literal["False"] = "False"
+    value: Literal[False] = False
+    type: Literal["bool"] = "bool"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "Disable"
+
+class denemeTrue(Config):
+    name: Literal["True"] = "True"
+    value: Literal[True] = True
+    type: Literal["bool"] = "bool"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "Enable"
+
+class deneme(Config):
+    """
+        deneme
+    """
+    name: Literal["KeepSide"] = "KeepSide"
+    value: Union[denemeTrue, denemeFalse]
+    type: Literal["object"] = "object"
+    field: Literal["dropdownlist"] = "dropdownlist"
+
+    class Config:
+        title = "Keep Sides"
+
 class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
     inputSecondImage: InputSecondImage
