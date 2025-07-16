@@ -22,7 +22,7 @@ class BlurringExampleEnsar(Component):
         self.rotation_degree = self.request.get_param("Degree")
         self.keep_side = self.request.get_param("KeepSide")
         self.image = self.request.get_param("inputImage")
-        print(self.keep_side,"  ",self.rotation_degree)
+        self.secondImage = self.request.get_param("inputSecondImage")
 
     @staticmethod
     def bootstrap(config: dict) -> dict:
@@ -40,6 +40,7 @@ class BlurringExampleEnsar(Component):
         img.value = self.blurring(img.value)
         img.value = self.flipping(img.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
+        self.secondImage = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response_blurring(context=self)
         return packageModel
 

@@ -1,6 +1,6 @@
 
 from sdks.novavision.src.helper.package import PackageHelper
-from components.RotationExampleEnsar.src.models.PackageModel import PackageModel, PackageConfigs, ConfigExecutor, RotationExampleEnsarExecuterOutputs, BrightnessExampleEnsarExecutorOutputs, BlurringExampleEnsarExecutorOutputs, RotationExampleEnsarExecuterResponse, BrightnessExampleEnsarExecutorResponse, BlurringExampleEnsarExecutorResponse, RotationExampleEnsarExecuter, BrightnessExampleEnsarExecutor, BlurringExampleEnsarExecutor, OutputImage
+from components.RotationExampleEnsar.src.models.PackageModel import PackageModel, PackageConfigs, ConfigExecutor, RotationExampleEnsarExecuterOutputs, BrightnessExampleEnsarExecutorOutputs, BlurringExampleEnsarExecutorOutputs, RotationExampleEnsarExecuterResponse, BrightnessExampleEnsarExecutorResponse, BlurringExampleEnsarExecutorResponse, RotationExampleEnsarExecuter, BrightnessExampleEnsarExecutor, BlurringExampleEnsarExecutor, OutputImage, OutputSecondImage
 
 
 def build_response_rotation(context):
@@ -28,7 +28,8 @@ def build_response_brightness(context):
 
 def build_response_blurring(context):
     outputImage = OutputImage(value=context.image)
-    outputs = BlurringExampleEnsarExecutorOutputs(outputImage=outputImage)
+    outputSecondImage = OutputSecondImage(value=context.secondImage)
+    outputs = BlurringExampleEnsarExecutorOutputs(outputImage=outputImage, outputSecondImage=outputSecondImage)
     blurringExampleEnsarExecutorResponse = BlurringExampleEnsarExecutorResponse(outputs=outputs)
     blurringExampleEnsarExecutor = BlurringExampleEnsarExecutor(value=blurringExampleEnsarExecutorResponse)
     executor = ConfigExecutor(value=blurringExampleEnsarExecutor)

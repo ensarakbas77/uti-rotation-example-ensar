@@ -19,8 +19,41 @@ class InputImage(Input):
     class Config:
         title = "Image"
 
+class InputSecondImage(Input):
+    name: Literal["inputSecondImage"] = "inputSecondImage"
+    value: Union[List[Image], Image]
+    type: str = "object"
+
+    @validator("type", pre=True, always=True)
+    def set_type_based_on_value(cls, value, values):
+        value = values.get('value')
+        if isinstance(value, Image):
+            return "object"
+        elif isinstance(value, list):
+            return "list"
+
+    class Config:
+        title = "Image"
+
 class OutputImage(Output):
     name: Literal["outputImage"] = "outputImage"
+    value: Union[List[Image],Image]
+    type: str = "object"
+
+    @validator("type", pre=True, always=True)
+    def set_type_based_on_value(cls, value, values):
+        value = values.get('value')
+        if isinstance(value, Image):
+            return "object"
+        elif isinstance(value, list):
+            return "list"
+
+    class Config:
+        title = "Image"
+
+
+class OutputSecondImage(Output):
+    name: Literal["outputSecondImage"] = "outputSecondImage"
     value: Union[List[Image],Image]
     type: str = "object"
 
@@ -82,6 +115,7 @@ class Degree(Config):
 
 class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
+    inputSecondImage: InputSecondImage
 
 class BlurringExampleEnsarExecutorConfigs(Configs):
     degree: Degree
@@ -100,6 +134,7 @@ class BlurringExampleEnsarExecutorRequest(Request):
 
 class BlurringExampleEnsarExecutorOutputs(Outputs):
     outputImage: OutputImage
+    outputSecondImage: OutputSecondImage
 
 class BlurringExampleEnsarExecutorResponse(Response):
     outputs: BlurringExampleEnsarExecutorOutputs
