@@ -1,6 +1,7 @@
 from pydantic import Field, validator
 from typing import List, Optional, Union, Literal
-from sdks.novavision.src.base.model import Package, Image, Inputs, Configs, Outputs, Response, Request, Output, Input, Config
+from sdks.novavision.src.base.model import Package, Image, Inputs, Configs, Outputs, Response, Request, Output, Input, \
+    Config
 
 
 class InputImage(Input):
@@ -19,6 +20,7 @@ class InputImage(Input):
     class Config:
         title = "Image"
 
+
 class InputSecondImage(Input):
     name: Literal["inputSecondImage"] = "inputSecondImage"
     value: Union[List[Image], Image]
@@ -35,9 +37,10 @@ class InputSecondImage(Input):
     class Config:
         title = "Image"
 
+
 class OutputImage(Output):
     name: Literal["outputImage"] = "outputImage"
-    value: Union[List[Image],Image]
+    value: Union[List[Image], Image]
     type: str = "object"
 
     @validator("type", pre=True, always=True)
@@ -54,7 +57,7 @@ class OutputImage(Output):
 
 class OutputSecondImage(Output):
     name: Literal["outputSecondImage"] = "outputSecondImage"
-    value: Union[List[Image],Image]
+    value: Union[List[Image], Image]
     type: str = "object"
 
     @validator("type", pre=True, always=True)
@@ -69,7 +72,6 @@ class OutputSecondImage(Output):
         title = "Image"
 
 
-
 class KeepSideFalse(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
@@ -78,6 +80,7 @@ class KeepSideFalse(Config):
 
     class Config:
         title = "Disable"
+
 
 class KeepSideTrue(Config):
     name: Literal["True"] = "True"
@@ -101,12 +104,13 @@ class KeepSideBBox(Config):
     class Config:
         title = "Keep Sides"
 
+
 class Degree(Config):
     """
         Positive angles specify counterclockwise rotation while negative angles indicate clockwise rotation.
     """
     name: Literal["Degree"] = "Degree"
-    value: int = Field(ge=-359.0, le=359.0,default=0)
+    value: int = Field(ge=-359.0, le=359.0, default=0)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
 
@@ -119,7 +123,7 @@ class FlipParameter(Config):
         Enter the value for the flipping operation. (1--> Horizontal , 0--> Vertical, -1--> Horizontal & Vertical)
     """
     name: Literal["flipParameter"] = "flipParameter"
-    value: int = Field(ge=-1, le=1,default=0)
+    value: int = Field(ge=-1, le=1, default=0)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
     placeHolder: Literal["integers between [-1, 1]"] = "integers between [-1, 1]"
@@ -128,7 +132,7 @@ class FlipParameter(Config):
         title = "Flipping Value"
 
 
-class denemeFalse(Config):
+class DenemeFalse(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
     type: Literal["bool"] = "bool"
@@ -137,7 +141,8 @@ class denemeFalse(Config):
     class Config:
         title = "denemeDisable"
 
-class denemeTrue(Config):
+
+class DenemeTrue(Config):
     name: Literal["True"] = "True"
     value: Literal[True] = True
     type: Literal["bool"] = "bool"
@@ -146,27 +151,29 @@ class denemeTrue(Config):
     class Config:
         title = "denemeEnable"
 
-class deneme(Config):
+
+class Deneme(Config):
     """
         deneme
     """
     name: Literal["deneme"] = "deneme"
-    value: Union[denemeTrue, denemeFalse]
+    value: Union[DenemeTrue, DenemeFalse]
     type: Literal["object"] = "object"
     field: Literal["dropdownlist"] = "dropdownlist"
 
     class Config:
         title = "deneme"
 
+
 class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
     inputSecondImage: InputSecondImage
+
 
 class BlurringExampleEnsarExecutorConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
     flipParameter: FlipParameter
-
 
 
 class BlurringExampleEnsarExecutorRequest(Request):
@@ -178,12 +185,15 @@ class BlurringExampleEnsarExecutorRequest(Request):
             "target": "configs"
         }
 
+
 class BlurringExampleEnsarExecutorOutputs(Outputs):
     outputImage: OutputImage
     outputSecondImage: OutputSecondImage
 
+
 class BlurringExampleEnsarExecutorResponse(Response):
     outputs: BlurringExampleEnsarExecutorOutputs
+
 
 class BlurringExampleEnsarExecutor(Config):
     name: Literal["BlurringExampleEnsar"] = "BlurringExampleEnsar"
@@ -203,9 +213,11 @@ class BlurringExampleEnsarExecutor(Config):
 class BrightnessExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
 
+
 class BrightnessExampleEnsarExecutorConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
+    deneme: Deneme
 
 
 class BrightnessExampleEnsarExecutorRequest(Request):
@@ -217,12 +229,13 @@ class BrightnessExampleEnsarExecutorRequest(Request):
             "target": "configs"
         }
 
+
 class BrightnessExampleEnsarExecutorOutputs(Outputs):
     outputImage: OutputImage
 
+
 class BrightnessExampleEnsarExecutorResponse(Response):
     outputs: BrightnessExampleEnsarExecutorOutputs
-
 
 
 class BrightnessExampleEnsarExecutor(Config):
@@ -239,13 +252,14 @@ class BrightnessExampleEnsarExecutor(Config):
             }
         }
 
+
 class RotationExampleEnsarExecuterInputs(Inputs):
     inputImage: InputImage
+
 
 class RotationExampleEnsarExecuterConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
-
 
 
 class RotationExampleEnsarExecuterRequest(Request):
@@ -257,11 +271,14 @@ class RotationExampleEnsarExecuterRequest(Request):
             "target": "configs"
         }
 
+
 class RotationExampleEnsarExecuterOutputs(Outputs):
     outputImage: OutputImage
 
+
 class RotationExampleEnsarExecuterResponse(Response):
     outputs: RotationExampleEnsarExecuterOutputs
+
 
 class RotationExampleEnsarExecuter(Config):
     name: Literal["RotationExampleEnsar"] = "RotationExampleEnsar"
@@ -290,6 +307,7 @@ class ConfigExecutor(Config):
 
 class PackageConfigs(Configs):
     executor: ConfigExecutor
+
 
 class PackageModel(Package):
     configs: PackageConfigs
