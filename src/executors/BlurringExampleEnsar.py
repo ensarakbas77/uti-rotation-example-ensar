@@ -28,17 +28,24 @@ class BlurringExampleEnsar(Component):
     def bootstrap(config: dict) -> dict:
         return {}
 
-    def blurring(self, img):
+    def blurring(self, img, img2):
         ksize = (30, 30)
-        return  cv2.blur(img, ksize, cv2.BORDER_DEFAULT)
+        task1 = cv2.blur(img, ksize, cv2.BORDER_DEFAULT)
+        task2 = cv2.blur(img2, ksize, cv2.BORDER_DEFAULT)
+        return  task1, task2
 
-    def flipping(self, img):
-        return cv2.flip(img, self.flipParameter)
+    def flipping(self, img, img2):
+        task1 = cv2.flip(img, self.flipParameter)
+        task2 = cv2.flip(img2, self.flipParameter)
+        return task1,  task2
 
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
+        img2 = Image.get_frame(img=self.secondImage, redis_db=self.redis_db)
         img.value = self.blurring(img.value)
         img.value = self.flipping(img.value)
+        img2.value = self.blurring(img2.value)
+        img2.value = self.flipping(img2.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         self.secondImage = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response_blurring(context=self)

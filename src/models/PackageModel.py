@@ -116,7 +116,7 @@ class Degree(Config):
 
 class FlipParameter(Config):
     """
-        Döndürme işlemi için değeri giriniz. (Örn: 1--> Yatay çevirme, 0--> Dikey çevirme, -1--> Yatay&Dikey çevirme)
+        Enter the value for the flipping operation. (1--> Horizontal , 0--> Vertical, -1--> Horizontal & Vertical)
     """
     name: Literal["flipParameter"] = "flipParameter"
     value: int = Field(ge=-1, le=1,default=0)
