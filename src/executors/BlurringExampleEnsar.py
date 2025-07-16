@@ -15,7 +15,7 @@ from components.RotationExampleEnsar.src.utils.response import build_response_bl
 from components.RotationExampleEnsar.src.models.PackageModel import PackageModel
 
 
-class BrightnessExampleEnsar(Component):
+class BlurringExampleEnsar(Component):
     def __init__(self, request, bootstrap):
         super().__init__(request, bootstrap)
         self.request.model = PackageModel(**(self.request.data))
@@ -33,7 +33,7 @@ class BrightnessExampleEnsar(Component):
         return  cv2.blur(img, ksize, cv2.BORDER_DEFAULT)
 
     def flipping(self, img):
-        return cv2.flip(img, 1)
+        return cv2.flip(img, -1)
 
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
