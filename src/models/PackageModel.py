@@ -150,7 +150,7 @@ class deneme(Config):
     """
         deneme
     """
-    name: Literal["KeepSide"] = "KeepSide"
+    name: Literal["deneme"] = "deneme"
     value: Union[denemeTrue, denemeFalse]
     type: Literal["object"] = "object"
     field: Literal["dropdownlist"] = "dropdownlist"
