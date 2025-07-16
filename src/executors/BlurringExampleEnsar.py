@@ -23,7 +23,7 @@ class BlurringExampleEnsar(Component):
         self.keep_side = self.request.get_param("KeepSide")
         self.image = self.request.get_param("inputImage")
         self.secondImage = self.request.get_param("inputSecondImage")
-
+        self.flipParameter = self.request.get_param("FlipParameter")
     @staticmethod
     def bootstrap(config: dict) -> dict:
         return {}
@@ -33,7 +33,7 @@ class BlurringExampleEnsar(Component):
         return  cv2.blur(img, ksize, cv2.BORDER_DEFAULT)
 
     def flipping(self, img):
-        return cv2.flip(img, -1)
+        return cv2.flip(img, self.flipParameter)
 
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)

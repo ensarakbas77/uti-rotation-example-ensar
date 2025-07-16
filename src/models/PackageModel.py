@@ -68,6 +68,8 @@ class OutputSecondImage(Output):
     class Config:
         title = "Image"
 
+
+
 class KeepSideFalse(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
@@ -112,6 +114,19 @@ class Degree(Config):
         title = "Angle"
 
 
+class FlipParameter(Config):
+    """
+        Döndürme işlemi için değeri giriniz. (Örn: 1--> Yatay çevirme, 0--> Dikey çevirme, -1--> Yatay&Dikey çevirme)
+    """
+    name: Literal["flipParameter"] = "flipParameter"
+    value: int = Field(ge=-1, le=1,default=0)
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
+    placeHolder: Literal["integers between [-1, 1]"] = "integers between [-1, 1]"
+
+    class Config:
+        title = "Flipping Value"
+
 
 class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
@@ -120,6 +135,7 @@ class BlurringExampleEnsarExecutorInputs(Inputs):
 class BlurringExampleEnsarExecutorConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
+    flipParameter: FlipParameter
 
 
 
