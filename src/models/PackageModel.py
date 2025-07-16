@@ -135,7 +135,7 @@ class denemeFalse(Config):
     field: Literal["option"] = "option"
 
     class Config:
-        title = "Disable"
+        title = "denemeDisable"
 
 class denemeTrue(Config):
     name: Literal["True"] = "True"
@@ -144,7 +144,7 @@ class denemeTrue(Config):
     field: Literal["option"] = "option"
 
     class Config:
-        title = "Enable"
+        title = "denemeEnable"
 
 class deneme(Config):
     """
@@ -156,7 +156,7 @@ class deneme(Config):
     field: Literal["dropdownlist"] = "dropdownlist"
 
     class Config:
-        title = "Keep Sides"
+        title = "deneme"
 
 class BlurringExampleEnsarExecutorInputs(Inputs):
     inputImage: InputImage
