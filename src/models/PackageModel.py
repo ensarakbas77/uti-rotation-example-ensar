@@ -132,31 +132,6 @@ class FlipParameter(Config):
         title = "Flipping Value"
 
 
-class BrightnessAlpha(Config):
-    """
-        Please enter the text you want displayed on the image.
-    """
-    name: Literal["alpha"] = "alpha"
-    value: int = Field(ge=0, le=100, default=0)
-    type: Literal["number"] = "number"
-    field: Literal["textInput"] = "textInput"
-
-    class Config:
-        title = "Alpha"
-
-
-class BrightnessBeta(Config):
-    """
-        Please enter the text you want displayed on the image.
-    """
-    name: Literal["beta"] = "beta"
-    value: int = Field(ge=0, le=100, default=0)
-    type: Literal["number"] = "number"
-    field: Literal["textInput"] = "textInput"
-
-    class Config:
-        title = "Beta"
-
 class TextWrite(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
@@ -167,12 +142,12 @@ class TextWrite(Config):
         title = "Text Write"
 
 
-class Brightness(Config):
-    configEdit: Union[BrightnessBeta, BrightnessAlpha]
+class BrightnessBeta(Config):
     name: Literal["True"] = "True"
     value: int = Field(ge=0, le=100, default=0)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
+    placeHolder: Literal["beta value"] = "beta value"
 
     class Config:
         title = "Brightness"
@@ -183,7 +158,7 @@ class BrightnessTextWrite(Config):
         Brightness or Text Write section
     """
     name: Literal["brightnessTextWrite"] = "brightnessTextWrite"
-    value: Union[Brightness, TextWrite]
+    value: Union[BrightnessBeta, TextWrite]
     type: Literal["object"] = "object"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
