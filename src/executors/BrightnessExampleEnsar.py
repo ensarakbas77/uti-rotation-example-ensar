@@ -22,6 +22,7 @@ class BrightnessExampleEnsar(Component):
         self.rotation_degree = self.request.get_param("Degree")
         self.keep_side = self.request.get_param("KeepSide")
         self.brightnessTextWrite = self.request.get_param("BrightnessTextWrite")
+        self.textWrite = self.request.get_param("TextWrite")
         self.image = self.request.get_param("inputImage")
 
     @staticmethod
@@ -29,18 +30,19 @@ class BrightnessExampleEnsar(Component):
         return {}
 
     def brightness(self, img):
-        alpha = 2.0
-        beta = 100
+        alpha = 2.2
+        beta = self.brightnessTextWrite
         return cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
 
     def write(self, img):
         font = cv2.FONT_HERSHEY_SIMPLEX
+        message = self.textWrite
         org = (100, 150)
-        fontScale = 4
+        font_scale = 4
         color = (255, 0, 0)
         thickness = 4
-        return cv2.putText(img, 'Ensar Deneme', org, font,
-                            fontScale, color, thickness, cv2.LINE_AA)
+        return cv2.putText(img, message, org, font,
+                            font_scale, color, thickness, cv2.LINE_AA)
 
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)

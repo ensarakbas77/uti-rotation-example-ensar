@@ -139,18 +139,18 @@ class TextWrite(Config):
     field: Literal["textInput"] = "textInput"
 
     class Config:
-        title = "Text Write"
+        title = "Text Write Input"
 
 
 class BrightnessBeta(Config):
-    name: Literal["True"] = "True"
+    name: Literal["brightnessBeta"] = "brightnessBeta"
     value: int = Field(ge=0, le=100)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
-    placeHolder: Literal["beta value"] = "beta value"
+    placeHolder: Literal["beta value [0, 100]"] = "beta value [0, 100]"
 
     class Config:
-        title = "Brightness Beta"
+        title = "Brightness Beta Value"
 
 
 class BrightnessTextWrite(Config):
