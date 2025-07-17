@@ -40,7 +40,7 @@ class BrightnessExampleEnsar(Component):
         font_scale = 4
         color = (255, 0, 0)
         thickness = 4
-        return cv2.putText(img, self.textWrite, org, font,
+        return cv2.putText(img, "Ensar AKBAŞ", org, font,
                             font_scale, color, thickness, cv2.LINE_AA)
 
     def run(self):
