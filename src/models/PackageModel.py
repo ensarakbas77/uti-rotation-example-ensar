@@ -133,6 +133,9 @@ class FlipParameter(Config):
 
 
 class TextWrite(Config):
+    """
+        Please enter the text you want displayed on the image.
+    """
     name: Literal["textWrite"] = "textWrite"
     value: str
     type: Literal["string"] = "string"

@@ -36,12 +36,11 @@ class BrightnessExampleEnsar(Component):
 
     def write(self, img):
         font = cv2.FONT_HERSHEY_SIMPLEX
-        message = self.textWrite
         org = (100, 150)
         font_scale = 4
         color = (255, 0, 0)
         thickness = 4
-        return cv2.putText(img, message, org, font,
+        return cv2.putText(img, self.textWrite, org, font,
                             font_scale, color, thickness, cv2.LINE_AA)
 
     def run(self):
