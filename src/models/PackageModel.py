@@ -132,6 +132,31 @@ class FlipParameter(Config):
         title = "Flipping Value"
 
 
+class BrightnessAlpha(Config):
+    """
+        Please enter the text you want displayed on the image.
+    """
+    name: Literal["alpha"] = "alpha"
+    value: int = Field(ge=0, le=100, default=0)
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
+
+    class Config:
+        title = "Alpha"
+
+
+class BrightnessBeta(Config):
+    """
+        Please enter the text you want displayed on the image.
+    """
+    name: Literal["beta"] = "beta"
+    value: int = Field(ge=0, le=100, default=0)
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
+
+    class Config:
+        title = "Beta"
+
 class TextWrite(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
@@ -143,10 +168,11 @@ class TextWrite(Config):
 
 
 class Brightness(Config):
+    configEdit: Union[BrightnessBeta, BrightnessAlpha]
     name: Literal["True"] = "True"
-    value: Literal[True] = True
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
+    value: int = Field(ge=0, le=100, default=0)
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
 
     class Config:
         title = "Brightness"
@@ -159,10 +185,11 @@ class BrightnessTextWrite(Config):
     name: Literal["brightnessTextWrite"] = "brightnessTextWrite"
     value: Union[Brightness, TextWrite]
     type: Literal["object"] = "object"
-    field: Literal["dropdownlist"] = "dropdownlist"
+    field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
     class Config:
         title = "Brightness or Text Write"
+
 
 
 class BlurringExampleEnsarExecutorInputs(Inputs):
