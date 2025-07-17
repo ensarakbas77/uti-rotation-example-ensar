@@ -22,7 +22,8 @@ class BrightnessExampleEnsar(Component):
         self.rotation_degree = self.request.get_param("Degree")
         self.keep_side = self.request.get_param("KeepSide")
         self.brightnessTextWrite = self.request.get_param("BrightnessTextWrite")
-        self.textWrite = self.request.get_param("TextWrite")
+        self.brightnessBeta = self.request.get_param("brightnessBeta")
+        self.textWrite = self.request.get_param("textWrite")
         self.image = self.request.get_param("inputImage")
 
     @staticmethod
@@ -31,7 +32,7 @@ class BrightnessExampleEnsar(Component):
 
     def brightness(self, img):
         alpha = 2.2
-        beta = self.brightnessTextWrite
+        beta = self.brightnessBeta
         return cv2.convertScaleAbs(img, alpha=alpha, beta=beta)
 
     def write(self, img):
@@ -40,7 +41,8 @@ class BrightnessExampleEnsar(Component):
         font_scale = 4
         color = (255, 0, 0)
         thickness = 4
-        return cv2.putText(img, "Ensar AKBAŞ", org, font,
+        print(self.textWrite)
+        return cv2.putText(img, self.textWrite, org, font,
                             font_scale, color, thickness, cv2.LINE_AA)
 
     def run(self):
