@@ -132,37 +132,37 @@ class FlipParameter(Config):
         title = "Flipping Value"
 
 
-class DenemeFalse(Config):
+class TextWrite(Config):
     name: Literal["False"] = "False"
     value: Literal[False] = False
     type: Literal["bool"] = "bool"
     field: Literal["option"] = "option"
 
     class Config:
-        title = "denemeDisable"
+        title = "Text Write"
 
 
-class DenemeTrue(Config):
+class Brightness(Config):
     name: Literal["True"] = "True"
     value: Literal[True] = True
     type: Literal["bool"] = "bool"
     field: Literal["option"] = "option"
 
     class Config:
-        title = "denemeEnable"
+        title = "Brightness"
 
 
-class Deneme(Config):
+class BrightnessTextWrite(Config):
     """
-        deneme
+        Brightness or Text Write section
     """
-    name: Literal["deneme"] = "deneme"
-    value: Union[DenemeTrue, DenemeFalse]
+    name: Literal["brightnessTextWrite"] = "brightnessTextWrite"
+    value: Union[Brightness, TextWrite]
     type: Literal["object"] = "object"
     field: Literal["dropdownlist"] = "dropdownlist"
 
     class Config:
-        title = "deneme"
+        title = "Brightness or Text Write"
 
 
 class BlurringExampleEnsarExecutorInputs(Inputs):
@@ -217,7 +217,7 @@ class BrightnessExampleEnsarExecutorInputs(Inputs):
 class BrightnessExampleEnsarExecutorConfigs(Configs):
     degree: Degree
     drawBBox: KeepSideBBox
-    deneme: Deneme
+    brightnessTextWrite: BrightnessTextWrite
 
 
 class BrightnessExampleEnsarExecutorRequest(Request):
