@@ -133,10 +133,10 @@ class FlipParameter(Config):
 
 
 class TextWrite(Config):
-    name: Literal["False"] = "False"
-    value: Literal[False] = False
-    type: Literal["bool"] = "bool"
-    field: Literal["option"] = "option"
+    name: Literal["textWrite"] = "textWrite"
+    value: str
+    type: Literal["string"] = "string"
+    field: Literal["textInput"] = "textInput"
 
     class Config:
         title = "Text Write"
@@ -144,13 +144,13 @@ class TextWrite(Config):
 
 class BrightnessBeta(Config):
     name: Literal["True"] = "True"
-    value: int = Field(ge=0, le=100, default=0)
+    value: int = Field(ge=0, le=100)
     type: Literal["number"] = "number"
     field: Literal["textInput"] = "textInput"
     placeHolder: Literal["beta value"] = "beta value"
 
     class Config:
-        title = "Brightness"
+        title = "Brightness Beta"
 
 
 class BrightnessTextWrite(Config):
