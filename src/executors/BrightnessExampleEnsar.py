@@ -5,12 +5,16 @@
 import os
 import cv2
 import sys
+import torch
+from ultralytics import YOLO
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../../../'))
 
 from sdks.novavision.src.media.image import Image
 from sdks.novavision.src.base.component import Component
 from sdks.novavision.src.helper.executor import Executor
+
+from components.BlurringFatima.src.utils.utils import load_models
 from components.RotationExampleEnsar.src.utils.response import build_response_brightness
 from components.RotationExampleEnsar.src.models.PackageModel import PackageModel
 
@@ -25,10 +29,15 @@ class BrightnessExampleEnsar(Component):
         self.brightnessBeta = self.request.get_param("brightnessBeta")
         self.textWrite = self.request.get_param("textWrite")
         self.image = self.request.get_param("inputImage")
+        self.weight = self.bootstrap["model"]
 
     @staticmethod
     def bootstrap(config: dict) -> dict:
-        return {}
+        """
+        YOLO modelini ve device'ı yükleyen fonksiyon.
+        """
+        model = load_models(config=config)
+        return {"model": model}
 
     def brightness(self, img):
         alpha = 2.2
